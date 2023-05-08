@@ -10,31 +10,37 @@ const Product = db.define('product', {
   },
   nombre_producto: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: ''
   },
   descripcion: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
+    defaultValue: ''
   },
   categoria: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: ''
   },
   precio: {
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.FLOAT,
     allowNull: false
   },
   enlace_afiliado: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: ''
+    
   },
   imagen: {
     type: DataTypes.STRING(255),
-    allowNull: false
+    allowNull: false,
+    defaultValue: ''
   },
   atributo_extra_1: {
     type: DataTypes.STRING(255),
-    allowNull: true
+    allowNull: true,
   },
   atributo_extra_2: {
     type: DataTypes.STRING(255),
