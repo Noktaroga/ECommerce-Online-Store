@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- views/products/edit.ejs -->
+
+        <h1>Editar producto</h1>
+
+        <form action="/products/{{product.id}}/edit" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <div>
+            <label for="nombre_producto">Nombre del producto</label>
+            <input type="text" name="nombre_producto" id="nombre_producto" value="<%= product.nombre_producto %>">
+        </div>
+        <div>
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" id="precio" value="<%= product.precio %>">
+        </div>
+        <div>
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" id="descripcion"><%= product.descripcion %></textarea>
+        </div>
+        <button type="submit">Guardar cambios</button>
+        </form>
+
+    </body>
+</html>
