@@ -7,6 +7,8 @@
     <link href="css/style.css" rel="stylesheet" />
   </head>
   <body>
+    <%- include('../partials/navbar.ejs') %>
+
     <h1>Nuevo producto</h1>
 
         <form action="/products/create" method="post" enctype="application/x-www-form-urlencoded">

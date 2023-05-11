@@ -35,27 +35,39 @@ const productController = {
   },
 
   edit: async (req, res) => {
-    const { id } = req.params;
-    const product = await Product.findByPk(id);
-    res.render('products/edit', { product });
-  },
-
-  update: async (req, res) => {
-    const { id } = req.params;
-    const { nombre_producto, precio, descripcion } = req.body;
-    const method = req.body._method; // Obtener el método HTTP real
-  
-    if (method === 'PUT' && (!nombre_producto || !precio || !descripcion)) {
-      return res.status(400).json({ message: 'Faltan campos requeridos' });
+    try {
+      const { id } = req.params;
+      console.log('EDIT request:', req.params);
+      const product = await Product.findByPk(id);
+      console.log('EDIT response:', product);
+      res.render('products/edit', { product });
+    } catch (error) {
+      console.log(error);
     }
-  
-    const productToUpdate = await Product.findByPk(id);
-    productToUpdate.nombre_producto = nombre_producto;
-    productToUpdate.precio = precio;
-    productToUpdate.descripcion = descripcion;
-    await productToUpdate.save();
-    res.redirect(`/products/${productToUpdate.id}`);
   },
+  
+  update: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { nombre_producto, precio, descripcion } = req.body;
+      console.log('UPDATE request:', req.body);
+    
+      if (!nombre_producto || !precio || !descripcion) {
+        return res.status(400).json({ message: 'Faltan campos requeridos' });
+      }
+    
+      const productToUpdate = await Product.findByPk(id);
+      productToUpdate.nombre_producto = nombre_producto;
+      productToUpdate.precio = precio;
+      productToUpdate.descripcion = descripcion;
+      await productToUpdate.save();
+      console.log('UPDATE response:', productToUpdate);
+      res.redirect(`/products/${productToUpdate.id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  ,
 
   delete: async (req, res) => {
     const { id } = req.params;

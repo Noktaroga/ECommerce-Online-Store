@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Usuarios</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Edad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% usuarios.forEach((usuario) => { %>
+          <tr>
+            <td><%= usuario.nombre %></td>
+            <td><%= usuario.email %></td>
+            <td><%= usuario.edad %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
