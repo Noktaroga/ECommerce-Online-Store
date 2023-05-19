@@ -1,0 +1,9 @@
+<!-- views/orders/delete-order.ejs -->
+<h1>Eliminar Orden</h1>
+<p>¿Estás seguro de que deseas eliminar la orden?</p>
+<form method="POST" action="/orders/<%= order.id %>/delete">
+  <div>
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="/orders" class="btn btn-secondary">Cancelar</a>
+  </div>
+</form>

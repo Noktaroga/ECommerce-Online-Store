@@ -1,53 +1,46 @@
-const { DataTypes } = require('sequelize');
-const db = require('../config/db');
+const Sequelize = require('sequelize');
+const sequelize = require('../config/db');
 
-const Product = db.define('product', {
+const Product = sequelize.define('product', {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
+    type: Sequelize.INTEGER,
     autoIncrement: true,
-    allowNull: false
+    allowNull: false,
+    primaryKey: true
   },
   nombre_producto: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: ''
+    type: Sequelize.STRING,
+    allowNull: false
   },
   descripcion: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-    defaultValue: ''
+    type: Sequelize.STRING,
+    allowNull: false
   },
   categoria: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: ''
+    type: Sequelize.STRING,
+    allowNull: true
   },
   precio: {
-    type: DataTypes.FLOAT,
+    type: Sequelize.DOUBLE,
     allowNull: false
   },
   enlace_afiliado: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: ''
-    
+    type: Sequelize.STRING,
+    allowNull: true
   },
   imagen: {
-    type: DataTypes.STRING(255),
-    allowNull: false,
-    defaultValue: ''
+    type: Sequelize.STRING,
+    allowNull: true
   },
   atributo_extra_1: {
-    type: DataTypes.STRING(255),
-    allowNull: true,
+    type: Sequelize.STRING,
+    allowNull: true
   },
   atributo_extra_2: {
-    type: DataTypes.STRING(255),
+    type: Sequelize.STRING,
     allowNull: true
   }
 });
 
+
 module.exports = Product;
-
-

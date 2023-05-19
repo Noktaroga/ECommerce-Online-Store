@@ -1,56 +1,41 @@
-const { DataTypes } = require('sequelize');
-const db = require('../config/db');
+/*process.on('warning', (warning) => {
+  console.warn(warning.stack);
+});*/
 
-const User = db.define('user', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    nombre_usuario: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ''
-    },
-    email: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: true
-    },
-    contraseña: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    direccion_envio: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ''
-    },
-    ciudad: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ''
-    },
-    estado: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ''
-    },
-    codigo_postal: {
-      type: DataTypes.STRING(10),
-      allowNull: false,
-      defaultValue: ''
-    },
-    pais: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      defaultValue: ''
-    },
-    fecha_registro: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date()
-    }
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/db');
+//const Product = require('./product');
+//const Order = require('./order');
+
+const Sequelize = require('sequelize');
+
+const User = sequelize.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  nombre: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  contraseña: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  rol: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+
 });
 
-module.exports = User;
+console.log('Verificación de asociaciones exitosa en user.js');
+
+module.exports = User
+

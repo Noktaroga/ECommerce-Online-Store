@@ -10,11 +10,12 @@ userController.signup = async (req, res) => {
 
 // Crea un nuevo usuario en la base de datos a partir de los datos enviados desde el formulario de registro.
 userController.create = async (req, res, next) => {
-  const { nombre_usuario, email, contraseña, direccion_envio, ciudad, estado, codigo_postal, pais } = req.body;
+  const { nombre_usuario, nombre, email, contraseña, direccion_envio, ciudad, estado, codigo_postal, pais } = req.body;
 
   try {
     const user = await User.create({
       nombre_usuario,
+      nombre,
       email,
       contraseña,
       direccion_envio,

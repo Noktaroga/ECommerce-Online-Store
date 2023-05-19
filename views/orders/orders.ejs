@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Órdenes</title>
+</head>
+<body>
+  <h1>Listado de Órdenes</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cantidad</th>
+        <th>Dirección de Envío</th>
+        <th>Estado</th>
+        <th>Fecha de Creación</th>
+        <th>Fecha de Actualización</th>
+        <th>Usuario</th>
+        <th>Producto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach((order) => { %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.cantidad %></td>
+          <td><%= order.direccion_envio %></td>
+          <td><%= order.estado %></td>
+          <td><%= order.fecha_creacion %></td>
+          <td><%= order.fecha_actualizacion %></td>
+          <td><%= order.user.nombre %></td>
+          <td>
+            <% if (order.products.length > 0) { %>
+              <%= order.products[0].nombre_producto %>
+            <% } else { %>
+              Sin producto asociado
+            <% } %>
+            
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

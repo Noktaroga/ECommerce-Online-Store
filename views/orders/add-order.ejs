@@ -1,0 +1,27 @@
+<form method="post" action="/orders/add-order">
+  <label for="userId">User:</label>
+  <select name="userId" id="userId">
+    <% users.forEach(user => { %>
+      <option value="<%= user.id %>"><%= user.nombre %></option>
+    <% }); %>
+  </select>
+  <br>
+
+  <label for="productId">Product:</label>
+  <select name="productId" id="productId">
+    <% products.forEach(product => { %>
+      <option value="<%= product.id %>"><%= product.nombre_producto %></option>
+    <% }); %>
+  </select>
+  <br>
+
+  <label for="cantidad">Cantidad:</label>
+  <input type="number" name="cantidad" id="cantidad" required>
+  <br>
+
+  <label for="direccion_envio">Dirección de envío:</label>
+  <input type="text" name="direccion_envio" id="direccion_envio" required>
+  <br>
+
+  <button type="submit">Agregar orden</button>
+</form>
