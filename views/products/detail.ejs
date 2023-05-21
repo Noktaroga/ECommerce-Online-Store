@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-    <%- include('../partials/navbar.ejs') %>
-    
-    <!-- En el archivo views/products/index.ejs -->
-        <h1>Productos</h1>
-        <ul>
-            <h1>Detalle del producto</h1>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<%- include('../partials/navbar.ejs') %>
 
-            <ul>
-              <li><strong>Nombre:</strong> <%= product.nombre_producto %></li>
-              <li><strong>Descripción:</strong> <%= product.descripcion %></li>
-              <li><strong>Categoría:</strong> <%= product.categoria %></li>
-              <li><strong>Precio:</strong> <%= product.precio %></li>
-              <li><strong>Enlace de afiliado:</strong> <%= product.enlace_afiliado %></li>
-              <li><strong>Imagen:</strong> <%= product.imagen %></li>
-              <li><strong>Atributo extra 1:</strong> <%= product.atributo_extra_1 %></li>
-              <li><strong>Atributo extra 2:</strong> <%= product.atributo_extra_2 %></li>
-            </ul>
-            <br>
-            <a href="/products">Volver a la lista de productos</a>
-            
-        </ul>
+<h1>Detalle del producto</h1>
+<ul>
+  <li><strong>Nombre:</strong> <%= product.nombre_producto %></li>
+  <li><strong>Descripción:</strong> <%= product.descripcion %></li>
+  <li><strong>Categoría:</strong> <%= product.categoria %></li>
+  <li><strong>Precio:</strong> <%= product.precio %></li>
+  <li><strong>Enlace de afiliado:</strong> <%= product.enlace_afiliado %></li>
+  <% if (product.imagen) { %>
+    <li><strong>Imagen:</strong> <img src="/uploads/<%= product.imagen %>" alt="Product Image"></li>
+  <% } %>
+  <li><strong>Atributo extra 1:</strong> <%= product.atributo_extra_1 %></li>
+  <li><strong>Atributo extra 2:</strong> <%= product.atributo_extra_2 %></li>
+</ul>
+<br>
+<a href="/products">Volver a la lista de productos</a>
 
-    </body>
+</body>
 </html>

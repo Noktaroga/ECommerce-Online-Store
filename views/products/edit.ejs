@@ -8,23 +8,28 @@
   <%- include('../partials/navbar.ejs') %>
 
   <h1>Edit Product</h1>
-  <form action="/products/<%= product.id %>" method="POST">
+  <form action="/products/<%= product.id %>" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PUT">
-
-    <label for="nombre_producto">Product Name:</label>
+  
+    <label for="nombre_producto">Nombre del producto:</label>
     <input type="text" id="nombre_producto" name="nombre_producto" value="<%= product.nombre_producto %>"><br><br>
-    <label for="precio">Price:</label>
+    <label for="precio">Precio:</label>
     <input type="number" id="precio" name="precio" value="<%= product.precio %>"><br><br>
-    <label for="descripcion">Description:</label>
+    <label for="descripcion">Descripción:</label>
     <textarea id="descripcion" name="descripcion"><%= product.descripcion %></textarea><br><br>
-    <input type="submit" value="Save Changes">
-
+    
+    <div>
+      <label for="imagen">Imagen:</label>
+      <input type="file" id="imagen" name="imagen" />
+    </div>
+    
+    <input type="submit" value="Guardar cambios">
   </form>
-
+  
   <form action="/products/<%= product.id %>/delete" method="POST">
     <input type="hidden" name="_method" value="DELETE">
-    <p>Are you sure you want to delete <%= product.nombre_producto %>? This action cannot be undone.</p>
-    <input type="submit" value="Delete">
+    <p>¿Estás seguro de que quieres eliminar el producto <%= product.nombre_producto %>? Esta acción no se puede deshacer.</p>
+    <input type="submit" value="Eliminar">
   </form>
   
   

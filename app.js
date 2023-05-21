@@ -31,9 +31,12 @@
     res.send('Bienvenido a mi sitio!');
   });
 
+
   app.use('/products', productsRoutes);
   app.use('/orders', ordersRoutes);
   app.use('/users', usersRoutes);
+  // Agrega esta línea antes de definir las rutas
+  app.use('/uploads', express.static('uploads'));
 
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');

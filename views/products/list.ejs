@@ -1,61 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title></title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.3/pure-min.css" integrity="sha512-6YmK0aivmrnqKJvvuWJSsk2Ie0X71yFghEKzjxk/5bH/e29zFqx8xno2Em8N2a4zmZrZfjhrUzGmEIVLHmL0jg==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-<body>
-    <%- include('../partials/navbar.ejs') %>
-    
-
-    <div class="d-flex justify-content-center mt-3">
-
-    <button class="btn btn-primary" onclick="location.href='/products/create'">Crear producto</button>
-    </div>    
-<div class="container mt-5">
-  <h1>Listado de productos</h1>
-  <table class="table table-striped">    
-    <thead>
+<!-- En el archivo views/products/list.ejs -->
+<table class="table table-striped">    
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+      <th>Precio</th>
+      <th>Enlace afiliado</th>
+      <th>Imagen</th>
+      <th>Atributo extra 1</th>
+      <th>Atributo extra 2</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (let product of products) { %>
       <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Categoría</th>
-        <th>Precio</th>
-        <th>Enlace afiliado</th>
-        <th>Imagen</th>
-        <th>Atributo extra 1</th>
-        <th>Atributo extra 2</th>
-        <th>Acciones</th>
+        <td><%= product.id %></td>
+        <td><%= product.nombre_producto %></td>
+        <td><%= product.descripcion %></td>
+        <td><%= product.categoria %></td>
+        <td><%= product.precio %> €</td>
+        <td><%= product.enlace_afiliado %></td>
+        <td><img src="/uploads/<%= product.imagen %>" alt="Imagen del producto"></td>
+        <td><%= product.atributo_extra_1 %></td>
+        <td><%= product.atributo_extra_2 %></td>
+        <td>
+          <a href="/products/<%= product.id %>">Detalle</a>
+          <a href="/products/<%= product.id %>/edit">Editar</a>
+          <form action="/products/<%= product.id %>/delete" method="post">
+            <button type="submit">Eliminar</button>
+          </form>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% for (let product of products) { %>
-        <tr>
-          <td><%= product.id %></td>
-          <td><%= product.nombre_producto %></td>
-          <td><%= product.descripcion %></td>
-          <td><%= product.categoria %></td>
-          <td><%= product.precio %> €</td>
-          <td><%= product.enlace_afiliado %></td>
-          <td><img src="<%= product.imagen %>" alt="Imagen del producto"></td>
-          <td><%= product.atributo_extra_1 %></td>
-          <td><%= product.atributo_extra_2 %></td>
-          <td>
-            <a href="/products/<%= product.id %>">Detalle</a>
-            <a href="/products/<%= product.id %>/edit">Editar</a>
-            <form action="/products/<%= product.id %>/delete" method="post">
-              <button type="submit">Eliminar</button>
-            </form>
-          </td>
-        </tr>
-      <% } %>
-    </tbody>
-  </table>
-  </div>
-</body>
-</html>
+    <% } %>
+  </tbody>
+</table>
