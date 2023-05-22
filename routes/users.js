@@ -20,5 +20,8 @@ router.get('/logout', userController.logout);
 // Renderiza la vista con la lista de usuarios.
 router.get('/usuarios', userController.listUsers);
 
+// Renderiza la vista con el perfil de usuarios.
+router.get('/profile', userController.profile);
+
 
 module.exports = router;

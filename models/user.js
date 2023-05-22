@@ -1,9 +1,10 @@
-/*process.on('warning', (warning) => {
-  console.warn(warning.stack);
-});*/
+//process.on('warning', (warning) => {
+//  console.warn(warning.stack);
+//});
 
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/db');
+const bcrypt = require('bcrypt');
 //const Product = require('./product');
 //const Order = require('./order');
 
@@ -36,6 +37,15 @@ const User = sequelize.define('user', {
 });
 
 console.log('Verificación de asociaciones exitosa en user.js');
+
+User.beforeCreate(async (user) => {
+  const hashedPassword = await bcrypt.hash(user.contraseña, 10);
+  user.contraseña = hashedPassword;
+});
+
+User.prototype.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.contraseña);
+};
 
 module.exports = User
 
