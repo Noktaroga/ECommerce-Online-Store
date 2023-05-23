@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const passportConfig = require('./config/passport');
+require('./models/association');
 
 
 // Importa tus modelos de usuario y otros archivos necesarios
@@ -36,10 +37,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware para manejar errores
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Error interno del servidor');
+});
+
 // Rutas
 const productsRoutes = require('./routes/products');
 const ordersRoutes = require('./routes/orders');
 const usersRoutes = require('./routes/users');
+const cartRoutes = require('./routes/cart');
 
 // Ruta de inicio
 app.get('/', (req, res) => {
@@ -50,9 +58,9 @@ app.get('/', (req, res) => {
 app.use('/products', productsRoutes);
 app.use('/orders', ordersRoutes);
 app.use('/users', usersRoutes);
+app.use('/cart', cartRoutes);
 
 // Ruta para servir archivos estáticos (por ejemplo, imágenes subidas)
 app.use('/uploads', express.static('uploads'));
-
 
 module.exports = app;

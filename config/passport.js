@@ -23,7 +23,6 @@ passport.use(new LocalStrategy({
   }
 }));
 
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -38,4 +37,11 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-module.exports = passport.initialize(); // Asegúrate de exportar passport.initialize()
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/users/login'); // Redirige al usuario al formulario de inicio de sesión si no está autenticado
+};
+
+module.exports = { passport, ensureAuthenticated };

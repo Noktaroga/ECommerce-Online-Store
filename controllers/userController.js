@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const { ensureAuthenticated } = require('../config/passport');
+
 
 const userController = {};
 
@@ -52,7 +54,7 @@ userController.authenticate = function(req, res, next) {
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       console.log('Usuario autenticado:', user); // Agrega este console.log para mostrar el usuario autenticado
-      res.redirect('/users/profile/' + user.id);
+      res.redirect('/users/profile/');
     });
   })(req, res, next);
 };

@@ -1,4 +1,6 @@
 const Product = require('../models/product');
+const { ensureAuthenticated } = require('../config/passport');
+
 
 const productController = {
   list: async (req, res) => {
