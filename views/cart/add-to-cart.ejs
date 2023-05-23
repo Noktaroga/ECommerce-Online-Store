@@ -1,0 +1,17 @@
+<!-- add-to-cart.ejs -->
+
+<h1>Agregar al Carrito</h1>
+
+<form action="/cart/add" method="POST">
+  <label for="product">Producto:</label>
+  <select name="product" id="product">
+    <% products.forEach((product) => { %>
+      <option value="<%= product.id %>"><%= product.nombre_producto %></option>
+    <% }); %>
+  </select>
+
+  <label for="quantity">Cantidad:</label>
+  <input type="number" name="quantity" id="quantity" min="1" required>
+
+  <button type="submit">Agregar al Carrito</button>
+</form>

@@ -11,7 +11,7 @@
 
     <h1>Nuevo producto</h1>
 
-        <form action="/products/create" method="post" enctype="application/x-www-form-urlencoded">
+        <form action="/products/create" method="post" enctype="multipart/form-data">
       <div>
         <label for="nombre_producto">Nombre del producto:</label>
         <input type="text" id="nombre_producto" name="nombre_producto" />
@@ -24,11 +24,10 @@
         <label for="descripcion">Descripción:</label>
         <textarea id="descripcion" name="descripcion"></textarea>
       </div>
-      <!-- Comenta la siguiente sección para omitir la carga de imágenes -->
-      <!-- <div>
+      <div>
         <label for="imagen">Imagen:</label>
         <input type="file" id="imagen" name="imagen" />
-      </div> -->
+      </div>
       <div>
         <button type="submit">Guardar</button>
         <a href="/products">Cancelar</a>

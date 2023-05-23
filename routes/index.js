@@ -10,4 +10,3 @@ router.use('/orders', ordersRoutes);
 router.use('/users', usersRoutes);
 
 module.exports = router;
-

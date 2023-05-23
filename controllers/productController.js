@@ -1,4 +1,6 @@
 const Product = require('../models/product');
+const { ensureAuthenticated } = require('../config/passport');
+
 
 const productController = {
   list: async (req, res) => {
@@ -23,7 +25,8 @@ const productController = {
     const product = await Product.create({
       nombre_producto,
       precio,
-      descripcion
+      descripcion,
+      imagen: req.file ? req.file.filename : null, // Almacena el nombre del archivo en la base de datos si se proporciona una imagen
     });
     res.redirect(`/products/${product.id}`);
   },
@@ -50,24 +53,26 @@ const productController = {
     try {
       const { id } = req.params;
       const { nombre_producto, precio, descripcion } = req.body;
-      console.log('UPDATE request:', req.body);
-    
-      if (!nombre_producto || !precio || !descripcion) {
-        return res.status(400).json({ message: 'Faltan campos requeridos' });
-      }
-    
+
       const productToUpdate = await Product.findByPk(id);
       productToUpdate.nombre_producto = nombre_producto;
       productToUpdate.precio = precio;
       productToUpdate.descripcion = descripcion;
+      
+      if (req.file) {
+        // Si se proporciona una nueva imagen, elimina la imagen anterior del servidor
+        if (productToUpdate.imagen) {
+          fs.unlinkSync(`uploads/${productToUpdate.imagen}`);
+        }
+        productToUpdate.imagen = req.file.filename;
+      }
+
       await productToUpdate.save();
-      console.log('UPDATE response:', productToUpdate);
       res.redirect(`/products/${productToUpdate.id}`);
     } catch (error) {
       console.log(error);
     }
-  }
-  ,
+  },
 
   delete: async (req, res) => {
     const { id } = req.params;
